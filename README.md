@@ -4,6 +4,8 @@
 
 It reads `tailscale status --json`, presents a rich interactive picker, and launches the action you choose for the selected host.
 
+![preview](preview.png)
+
 ## Requirements
 
 - `tailscale` installed and logged in
