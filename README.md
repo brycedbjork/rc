@@ -1,9 +1,14 @@
+# rc
+
+Instant terminal and screen sharing access to remote machines.
+
+Built for monitoring servers running autonomous agents—when you need to check on what an agent is doing, `rc` gets you there in seconds.
+
 ![preview](preview.png)
 
-`rc` is a tiny Tailscale helper that lets you quickly open SSH or Screen Sharing to machines on your tailnet.
+## How it works
 
-It reads `tailscale status --json`, presents a rich interactive picker, and launches the action you choose for the selected host.
-
+`rc` connects to your [Tailscale](https://tailscale.com) network, shows all your machines in an interactive picker, and launches SSH or VNC with a single keypress. Credentials are cached so subsequent connections are instant.
 
 ## Requirements
 
@@ -62,3 +67,5 @@ All credentials are saved locally in `~/.rc/settings.json` (plaintext, not synce
 - If no peers appear, run `tailscale status` to verify connectivity.
 - If the UI doesn't render, run in a TTY (not in a non-interactive shell).
 - SSH key copying requires `sshpass`. Install with: `brew install hudochenkov/sshpass/sshpass`
+
+![preview](preview.png)
