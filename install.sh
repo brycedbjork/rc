@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO="https://github.com/brycedbjork/rc.git"
+INSTALL_DIR="${HOME}/.rc-app"
 
 # Check for bun
 if ! command -v bun >/dev/null 2>&1; then
@@ -29,21 +30,28 @@ if ! command -v sshpass >/dev/null 2>&1; then
   fi
 fi
 
-cd "$ROOT_DIR"
+# If running from curl pipe, clone the repo
+if [[ ! -f "$(dirname "$0")/package.json" ]] 2>/dev/null; then
+  echo "Cloning rc..."
+  rm -rf "$INSTALL_DIR"
+  git clone --depth 1 "$REPO" "$INSTALL_DIR"
+  cd "$INSTALL_DIR"
+else
+  cd "$(dirname "$0")"
+fi
+
 bun install
 bun link
 
 if command -v rc >/dev/null 2>&1; then
-  echo "Installed rc via bun link."
+  echo "Installed rc successfully."
   exit 0
 fi
 
 if bun_bin="$(bun bin 2>/dev/null)"; then
-  echo "bun link installed rc into: $bun_bin"
-  echo "If rc isn't on your PATH, add:"
-  echo "  export PATH=\"$bun_bin:\$PATH\""
+  echo "Installed rc to: $bun_bin"
+  echo "Add to PATH: export PATH=\"$bun_bin:\$PATH\""
   exit 0
 fi
 
 echo "bun link completed, but rc is not on your PATH."
-echo "Ensure your bun bin directory is on PATH."

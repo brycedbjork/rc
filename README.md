@@ -17,13 +17,9 @@ Built for monitoring servers running autonomous agents—when you need to check 
 
 ## Install
 
-One-liner:
-
 ```bash
-git clone https://github.com/brycedbjork/rc && cd rc && ./install.sh
+curl -fsSL https://raw.githubusercontent.com/brycedbjork/rc/main/install.sh | bash
 ```
-
-The installer uses `bun link`. If `rc` isn't on your PATH after install, add your bun bin directory (usually `~/.bun/bin`).
 
 ## Usage
 
