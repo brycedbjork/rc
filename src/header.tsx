@@ -8,7 +8,7 @@ type HeaderProps = {
 
 export function Header({ version, children }: HeaderProps): JSX.Element {
   return (
-    <Box borderStyle="round" paddingX={1}>
+    <Box borderStyle="round" borderDimColor paddingX={1}>
       <Box flexDirection="column">
         <Text>
           <Text>remote control </Text>

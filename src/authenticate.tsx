@@ -119,14 +119,7 @@ export function Authenticate({
       </Box>
 
       <Box paddingLeft={2} paddingRight={2}>
-        <Box
-          borderStyle="single"
-          borderTop
-          borderBottom={false}
-          borderLeft={false}
-          borderRight={false}
-          borderDimColor
-        >
+        <Box borderStyle="single" borderTop borderBottom={false} borderLeft={false} borderRight={false} borderDimColor>
           <Text dimColor>esc to go back · enter to submit</Text>
         </Box>
       </Box>

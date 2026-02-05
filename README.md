@@ -28,23 +28,36 @@ rc
 Options:
 
 - `--all` include offline machines
-- `--mode vnc|ssh|ping` skip mode switching
 
-## UI Tips
+## Keyboard Shortcuts
 
-- Press `Tab` to switch between terminal (ssh) and screen (vnc).
-- Type to filter the list in real time.
-- Use arrow keys to move the selection.
-- Press `Enter` to open, `Esc` to quit.
+- **Arrow keys** - navigate the machine list
+- **Enter** - connect to selected machine
+- **Tab** - switch between terminal (SSH) and screen (VNC) modes
+- **/** - open search, then type to filter machines
+- **Esc** - close search (if open) or quit
+
+## Credentials
+
+When connecting via SSH or VNC for the first time, `rc` will prompt for your username and password.
+
+For SSH connections, `rc` automatically:
+1. Generates an SSH key (`~/.ssh/id_ed25519`) if one doesn't exist
+2. Copies your public key to the remote machine using `ssh-copy-id`
+3. Stores your username for future connections
+
+For VNC connections, credentials are stored for automatic login.
+
+All credentials are saved locally in `~/.rc/settings.json` (plaintext, not synced).
 
 ## Notes
 
 - On macOS, `rc` opens the built-in Screen Sharing app via `vnc://`.
 - On Linux, it uses `xdg-open` if available.
-- SSH credentials are stored locally in `.rc/settings.json` (gitignored, plaintext).
 
 ## Troubleshooting
 
 - If you see "tailscale not found", install Tailscale and login once.
 - If no peers appear, run `tailscale status` to verify connectivity.
 - If the UI doesn't render, run in a TTY (not in a non-interactive shell).
+- SSH key copying requires `sshpass`. Install with: `brew install hudochenkov/sshpass/sshpass`

@@ -99,18 +99,10 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function parseArgs(): { includeOffline: boolean; mode?: Mode } {
+function parseArgs(): { includeOffline: boolean } {
   const argv = process.argv.slice(2);
   const includeOffline = argv.includes("--all");
-  let mode: Mode | undefined;
-  const modeIdx = argv.indexOf("--mode");
-  if (modeIdx !== -1) {
-    const value = argv[modeIdx + 1] as Mode | undefined;
-    if (value === "vnc" || value === "ssh" || value === "ping") {
-      mode = value;
-    }
-  }
-  return { includeOffline, mode };
+  return { includeOffline };
 }
 
 function runTailscaleStatus(): StatusJson {
@@ -374,12 +366,10 @@ type ExitResult = { type: "cancel" } | { type: "action"; peer: Peer; mode: Mode;
 
 type AppProps = {
   peers: Peer[];
-  defaultMode: Mode;
-  modeLocked: boolean;
   onExit: (result: ExitResult) => void;
 };
 
-function App({ peers, defaultMode, modeLocked, onExit }: AppProps): JSX.Element | null {
+function App({ peers, onExit }: AppProps): JSX.Element | null {
   const [page, setPage] = useState<Page>({ type: "picker" });
   const [peersList, setPeersList] = useState(peers);
   const mountedRef = useRef(true);
@@ -463,8 +453,6 @@ function App({ peers, defaultMode, modeLocked, onExit }: AppProps): JSX.Element 
       <Picker
         version={VERSION}
         peers={peersList}
-        initialMode={defaultMode}
-        modeLocked={modeLocked}
         onSelect={handleSelect}
         onCancel={() => onExit({ type: "cancel" })}
         _onTick={() => setPeersList([...peersList])}
@@ -554,16 +542,13 @@ async function promptFallback(peers: Peer[]): Promise<Peer | null> {
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main(): Promise<number> {
-  const { includeOffline, mode: modeArg } = parseArgs();
+  const { includeOffline } = parseArgs();
   const status = runTailscaleStatus();
   const peers = extractPeers(status, includeOffline);
   if (peers.length === 0) {
     process.stdout.write("No peers found.\n");
     return 1;
   }
-
-  const defaultMode = modeArg ?? "ssh";
-  const modeLocked = modeArg !== undefined;
 
   // Non-TTY fallback
   if (!process.stdin.isTTY || !process.stdout.isTTY) {
@@ -575,10 +560,8 @@ async function main(): Promise<number> {
       return 1;
     }
 
-    const host = defaultMode === "ssh" ? peer.shortName : preferredHost(peer) || peer.ip;
-    if (defaultMode === "vnc") openScreenSharing(host);
-    else if (defaultMode === "ssh") openSsh(host);
-    else ping(host);
+    const host = peer.shortName;
+    openSsh(host);
     return 0;
   }
 
@@ -587,8 +570,6 @@ async function main(): Promise<number> {
     const app = render(
       <App
         peers={peers}
-        defaultMode={defaultMode}
-        modeLocked={modeLocked}
         onExit={(result) => {
           app.unmount();
           resolve(result);

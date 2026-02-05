@@ -60,25 +60,15 @@ function osName(os: string): string {
 type PickerProps = {
   version: string;
   peers: Peer[];
-  initialMode: Mode;
-  modeLocked: boolean;
   onSelect: (peer: Peer, mode: Mode) => void;
   onCancel: () => void;
   _onTick: () => void;
 };
 
-export function Picker({
-  version,
-  peers,
-  initialMode,
-  modeLocked,
-  onSelect,
-  onCancel,
-  _onTick,
-}: PickerProps): JSX.Element {
+export function Picker({ version, peers, onSelect, onCancel, _onTick }: PickerProps): JSX.Element {
   const [filter, setFilter] = useState("");
   const [selected, setSelected] = useState(0);
-  const [mode, setMode] = useState<Mode>(initialMode);
+  const [mode, setMode] = useState<Mode>("ssh");
   const [showSearch, setShowSearch] = useState(false);
 
   const list = useMemo(() => {
@@ -164,9 +154,7 @@ export function Picker({
 
       // Tab
       if (input === "\t") {
-        if (!modeLocked) {
-          setMode((m) => (m === "ssh" ? "vnc" : "ssh"));
-        }
+        setMode((m) => (m === "ssh" ? "vnc" : "ssh"));
         return;
       }
 
@@ -205,7 +193,7 @@ export function Picker({
     return () => {
       stdin?.off("data", handleData);
     };
-  }, [stdin, setRawMode, onCancel, onSelect, modeLocked]);
+  }, [stdin, setRawMode, onCancel, onSelect]);
 
   const maxVisible = 10;
   let displayList = list;
@@ -264,12 +252,12 @@ export function Picker({
             {mode === "ssh" ? (
               <>
                 <Text color="cyan">~ terminal</Text>
-                {modeLocked ? null : <Text dimColor> (tab to cycle)</Text>}
+                <Text dimColor> (tab to cycle)</Text>
               </>
             ) : mode === "vnc" ? (
               <>
                 <Text color="magenta">▶ screen</Text>
-                {modeLocked ? null : <Text dimColor> (tab to cycle)</Text>}
+                <Text dimColor> (tab to cycle)</Text>
               </>
             ) : (
               <Text color="green">• ping</Text>
