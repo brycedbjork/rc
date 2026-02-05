@@ -1,10 +1,11 @@
-# rc
+![preview](preview.png)
+
+# rc - Remote Machine Remote Control
 
 `rc` is a tiny Tailscale helper that lets you quickly open SSH or Screen Sharing to machines on your tailnet.
 
 It reads `tailscale status --json`, presents a rich interactive picker, and launches the action you choose for the selected host.
 
-![preview](preview.png)
 
 ## Requirements
 
