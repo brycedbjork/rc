@@ -8,11 +8,23 @@ Built for monitoring servers running autonomous agents—when you need to check 
 
 ## How it works
 
-`rc` connects to your [Tailscale](https://tailscale.com) network, shows all your machines in an interactive picker, and launches SSH or VNC with a single keypress. Credentials are cached so subsequent connections are instant.
+`rc` connects to your [Tailscale](https://tailscale.com) network, shows all your machines in an interactive picker, and launches a connected terminal (SSH) or a virtual screen (VNC) with a single keypress. Credentials are cached so subsequent connections are instant.
 
 ## Requirements
 
-- `tailscale` installed and logged in
+- [Tailscale](https://tailscale.com) installed and logged in on all machines
+
+## Remote Machine Setup
+
+Enable these on each machine you want to connect to:
+
+**macOS:**
+1. **Remote Login (SSH):** System Settings → General → Sharing → Remote Login → Enable
+2. **Screen Sharing (VNC):** System Settings → General → Sharing → Screen Sharing → Enable
+
+**Linux:**
+1. **SSH:** Usually enabled by default. If not: `sudo systemctl enable --now sshd`
+2. **VNC:** Install a VNC server like `x11vnc` or `tigervnc`
 
 ## Install
 
@@ -61,4 +73,3 @@ All credentials are saved locally in `~/.rc/settings.json` (plaintext, not synce
 - If you see "tailscale not found", install Tailscale and login once.
 - If no peers appear, run `tailscale status` to verify connectivity.
 - If the UI doesn't render, run in a TTY (not in a non-interactive shell).
-- SSH key copying requires `sshpass`. Install with: `brew install hudochenkov/sshpass/sshpass`

@@ -20,6 +20,7 @@ done_step() {
 
 echo ""
 echo -e "${CYAN}rc${RESET} installer"
+echo -e "${DIM}Instant terminal and screen sharing access to remote machines.${RESET}"
 echo ""
 
 # Install bun if needed
