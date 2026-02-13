@@ -1,1 +1,3 @@
+bun run lint
 bun test
+bunx tsc --noEmit
