@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Terminal, Monitor, Code, Sparkle, Copy, Check } from "lucide-react";
 
 function Header() {
   return (
@@ -44,7 +45,7 @@ function CopyButton() {
           }}
           className="shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition-all cursor-pointer bg-white/10 hover:bg-white/20 text-zinc-300"
         >
-          {copied ? "Copied!" : "Copy"}
+          {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
         </button>
       </div>
     </div>
@@ -141,33 +142,17 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                    <polyline points="4 17 10 11 4 5" />
-                    <line x1="12" y1="19" x2="20" y2="19" />
-                  </svg>
-                ),
+                icon: <Terminal className="w-5 h-5" />,
                 title: "Terminal",
                 desc: "SSH into any machine. Keys are generated and distributed automatically — just pick a machine and you're in.",
               },
               {
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                ),
+                icon: <Monitor className="w-5 h-5" />,
                 title: "Screen",
                 desc: "See and control remote desktops via macOS Screen Sharing. One keypress to connect, passwords saved locally.",
               },
               {
-                icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                    <polyline points="16 18 22 12 16 6" />
-                    <polyline points="8 6 2 12 8 18" />
-                  </svg>
-                ),
+                icon: <Code className="w-5 h-5" />,
                 title: "Cursor",
                 desc: "Launch Cursor with Remote SSH. Pick a starting directory or recent project and start coding immediately.",
               },
@@ -183,10 +168,10 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-zinc-500">
-            <span>✦ Auto-updating</span>
-            <span>✦ Credential caching</span>
-            <span>✦ Tailscale-powered discovery</span>
-            <span>✦ Zero config networking</span>
+            <span className="inline-flex items-center gap-1.5"><Sparkle className="w-3.5 h-3.5" /> Auto-updating</span>
+            <span className="inline-flex items-center gap-1.5"><Sparkle className="w-3.5 h-3.5" /> Credential caching</span>
+            <span className="inline-flex items-center gap-1.5"><Sparkle className="w-3.5 h-3.5" /> Tailscale-powered discovery</span>
+            <span className="inline-flex items-center gap-1.5"><Sparkle className="w-3.5 h-3.5" /> Zero config networking</span>
           </div>
         </section>
 
