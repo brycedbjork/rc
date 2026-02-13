@@ -113,7 +113,7 @@ export default function Home() {
       </section>
 
       {/* Why */}
-      <section className="max-w-2xl mx-auto px-6 pb-24 text-center">
+      <section className="max-w-2xl mx-auto px-6 pt-4 pb-28 text-center">
         <p className="text-lg sm:text-xl text-zinc-400 leading-relaxed">
           You&apos;ve got agents running on servers, builds happening on remote machines, services spread across your network. When something needs your attention, you shouldn&apos;t have to remember hostnames, find SSH keys, or configure VNC.
         </p>
@@ -130,17 +130,33 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              badge: ">_",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+              ),
               title: "Terminal",
               desc: "SSH into any machine. Keys are generated and distributed automatically — just pick a machine and you're in.",
             },
             {
-              badge: "🖥",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              ),
               title: "Screen",
               desc: "See and control remote desktops via macOS Screen Sharing. One keypress to connect, passwords saved locally.",
             },
             {
-              badge: "{ }",
+              icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              ),
               title: "Cursor",
               desc: "Launch Cursor with Remote SSH. Pick a starting directory or recent project and start coding immediately.",
             },
@@ -149,7 +165,7 @@ export default function Home() {
               key={f.title}
               className="rounded-xl border border-white/10 bg-white/[0.02] p-8 hover:bg-white/[0.04] transition-colors"
             >
-              <span className="inline-block mb-3 font-mono text-xs text-zinc-500 bg-white/10 rounded-md px-2 py-1">{f.badge}</span>
+              <div className="inline-flex items-center justify-center mb-3 text-zinc-500 bg-white/10 rounded-md p-2">{f.icon}</div>
               <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
               <p className="text-sm text-zinc-400 leading-relaxed">{f.desc}</p>
             </div>
@@ -250,7 +266,7 @@ export default function Home() {
           GitHub →
         </a>
         <a
-          href="https://northbrook.io"
+          href="https://northbrook.com"
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
