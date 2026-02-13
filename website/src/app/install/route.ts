@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 // Embed the install script at build time
 const INSTALL_SCRIPT = readFileSync(

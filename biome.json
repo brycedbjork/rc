@@ -30,6 +30,15 @@
     }
   },
   "files": {
-    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.json"]
+    "includes": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.json",
+      "website/src/**/*.ts",
+      "website/src/**/*.tsx",
+      "website/src/**/*.js",
+      "website/src/**/*.json"
+    ]
   }
 }
