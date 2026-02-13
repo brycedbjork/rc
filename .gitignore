@@ -4,3 +4,4 @@ bun.lockb
 .rc/
 website/.next/
 website/node_modules/
+website/.vercel
