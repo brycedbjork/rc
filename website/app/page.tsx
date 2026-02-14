@@ -105,8 +105,8 @@ export default function Home() {
 
         {/* Why */}
         <section className="px-6 pb-24">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12">
-            Just type <code className="font-mono text-emerald-gradient">rc</code>.
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">
+            Just type <code className="font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-md px-2 py-0.5">rc</code>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             {[
