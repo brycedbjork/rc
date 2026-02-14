@@ -102,21 +102,6 @@ export default function Home() {
             <InstallWidget />
           </div>
 
-          {/* Meta line */}
-          <div className="mt-6 flex items-center justify-center gap-6 text-sm text-zinc-500">
-            <a
-              href="https://github.com/north-brook/remote-control"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-zinc-300 transition-colors"
-            >
-              GitHub ↗
-            </a>
-            <span>·</span>
-            <span>macOS &amp; Linux</span>
-            <span>·</span>
-            <span>TypeScript</span>
-          </div>
         </section>
 
 
