@@ -1,0 +1,84 @@
+---
+title: "Why I Stopped SSH-ing Into My Servers"
+description: "I have six machines on Tailscale. I was SSH-ing into them dozens of times a day. Then I built something faster."
+date: "2026-02-14"
+author: "North Brook"
+tags: ["ssh", "tailscale", "cli", "ai-agents"]
+---
+
+I have six machines on my network. Two run AI agents 24/7. One's a build server. One's a NAS. A Mac Mini handles media. And my daily driver laptop ties it all together over Tailscale.
+
+I SSH into these machines constantly. Or I did.
+
+The old workflow looked like this:
+
+```bash
+tailscale status          # Which machine was it again?
+ssh bryce@100.84.32.17   # Hope I have the right key
+# Permission denied. Right, different username on this one.
+ssh admin@100.84.32.17
+# There we go.
+```
+
+Multiply that by a dozen times a day across six machines and it gets old fast.
+
+## The breaking point
+
+I started running autonomous AI agents on a couple of remote servers. Claude Code on one, a custom agent framework on another. These things need babysitting — not constant attention, but frequent check-ins. Is the agent stuck? Did it go off the rails? Is it burning through tokens on a loop?
+
+The SSH dance became unbearable. I needed to go from "I wonder what that agent is doing" to "I'm looking at its output" in seconds, not minutes.
+
+## What I built
+
+`rc` is a terminal UI that shows every machine on your Tailscale network in an interactive picker. You arrow to a machine, hit Enter, and you're connected via SSH. That's it. No IPs to remember, no keys to manage, no config files to maintain.
+
+But SSH is just one mode. Hit Shift+Tab and you cycle through:
+
+- **Terminal** — SSH session with auto-managed keys
+- **Screen** — macOS Screen Sharing (VNC) with cached passwords
+- **Cursor** — Cursor IDE with Remote SSH, pointed at any directory you choose
+
+The Cursor mode changed my workflow completely. I pick a machine, pick the project directory where an agent is working, and Cursor opens right there with full IDE capabilities. I can read the agent's changes, check git history, look at logs — all in my normal editor, on a remote machine, launched in 3 seconds.
+
+## How it works under the hood
+
+`rc` talks to Tailscale to discover your network. It gets the list of machines, their IPs, OS info, and online status. Everything shows up in a keyboard-driven TUI built with Ink (React for terminals).
+
+On first SSH connection to a machine, `rc`:
+
+1. Generates an ed25519 key if you don't have one
+2. Runs `ssh-copy-id` to distribute it to the remote machine
+3. Saves your username for next time
+
+After that, connections are instant. No prompts, no passwords, no friction.
+
+VNC credentials work the same way — enter once, cached forever (locally in `~/.rc/settings.json`).
+
+## The keyboard-first philosophy
+
+Every action is a keypress. Arrow keys navigate, Enter connects, `/` searches, Tab cycles machines, Shift+Tab switches modes, Esc goes back. No mouse needed, no menus to click through.
+
+This matters when you're checking on something quickly. You want muscle memory. After a week of using `rc`, I don't think about it — my fingers know the path to each machine.
+
+## Who this is for
+
+If you have multiple machines on Tailscale and you connect to them regularly, `rc` will save you time. It's particularly useful if you:
+
+- Run a homelab and jump between services
+- Monitor AI agents on remote servers
+- Develop on remote machines with Cursor
+- Just hate remembering IP addresses
+
+## Try it
+
+```bash
+curl -fsSL https://remotecontrol.sh/install | bash
+```
+
+Then just type `rc`.
+
+It requires Tailscale on all machines and SSH enabled on the targets. Screen Sharing and Cursor are optional — modes only appear when they're available.
+
+The code is open source: [github.com/north-brook/remote-control](https://github.com/north-brook/remote-control)
+
+Built with TypeScript, Bun, and Ink. PRs welcome.
