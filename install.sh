@@ -61,8 +61,9 @@ fi
 if [[ ! -f "$(dirname "$0")/package.json" ]] 2>/dev/null; then
   step "Downloading rc..."
   rm -rf "$INSTALL_DIR"
-  git clone --depth 1 -q "$REPO" "$INSTALL_DIR"
+  git clone --depth 1 --filter=blob:none --sparse -q "$REPO" "$INSTALL_DIR"
   cd "$INSTALL_DIR"
+  git sparse-checkout set --no-cone '/*' '!website/'
   done_step "Downloaded rc"
 else
   cd "$(dirname "$0")"
