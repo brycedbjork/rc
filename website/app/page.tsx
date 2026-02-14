@@ -47,7 +47,7 @@ export default function Home() {
           {/* Pill badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-zinc-500 mb-8">
             <span className="text-emerald-400">●</span>
-            Open source · Tailscale-powered · macOS &amp; Linux
+            Open source
           </div>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
