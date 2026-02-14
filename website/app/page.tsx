@@ -227,28 +227,6 @@ export default function Home() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 mt-8">
-        <div className="max-w-4xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-          <span>Built by North Brook</span>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://github.com/north-brook/remote-control"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-emerald-400 transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="/blog"
-              className="hover:text-emerald-400 transition-colors"
-            >
-              Blog
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }
