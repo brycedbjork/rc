@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Terminal, Monitor, Code, Sparkle, Copy, Check } from "lucide-react";
 
 function Header() {
@@ -108,14 +107,17 @@ export default function Home() {
         {/* Preview */}
         <section className="px-6 pb-20">
           <div className="rounded-xl border border-white/10 overflow-hidden shadow-2xl shadow-black/50">
-            <Image
-              src="/preview.png"
-              alt="rc terminal UI showing machine picker"
-              width={1200}
-              height={700}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
               className="w-full h-auto"
-              priority
-            />
+              poster="/preview.png"
+            >
+              <source src="/hero-demo.webm" type="video/webm" />
+              <source src="/hero-demo.mp4" type="video/mp4" />
+            </video>
           </div>
         </section>
 
