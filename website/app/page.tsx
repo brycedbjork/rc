@@ -105,30 +105,27 @@ export default function Home() {
 
         {/* Why */}
         <section className="px-6 pb-24">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-4">
-            Why Remote Control?
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12">
+            Just type <code className="font-mono text-emerald-gradient">rc</code>.
           </h2>
-          <p className="text-sm text-zinc-500 text-center mb-12">You shouldn&apos;t have to fight your tools to check on a machine.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             {[
-              { pain: "Remembering hostnames", fix: "Pick from a list" },
-              { pain: "Hunting for SSH keys", fix: "Keys auto-generated" },
-              { pain: "Configuring VNC clients", fix: "One keypress to connect" },
-              { pain: "Setting up Cursor SSH", fix: "Choose a directory and go" },
+              { pain: "Remembering hostnames", fix: "Pick from a list", icon: "→" },
+              { pain: "Hunting for SSH keys", fix: "Keys auto-generated", icon: "→" },
+              { pain: "Configuring VNC clients", fix: "One keypress to connect", icon: "→" },
+              { pain: "Setting up Cursor SSH", fix: "Choose a directory and go", icon: "→" },
             ].map((item) => (
               <div
                 key={item.pain}
-                className="rounded-lg border border-white/10 bg-white/[0.02] px-5 py-4"
+                className="group rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 hover:border-emerald-400/20 transition-all"
               >
-                <p className="text-zinc-500 line-through decoration-zinc-600 text-sm mb-1.5">{item.pain}</p>
-                <p className="text-zinc-200 text-sm font-medium">{item.fix}</p>
+                <p className="text-zinc-500 line-through decoration-zinc-700 text-sm mb-3">{item.pain}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-400 text-sm">→</span>
+                  <p className="text-white text-base font-medium">{item.fix}</p>
+                </div>
               </div>
             ))}
-          </div>
-          <div className="text-center mt-10">
-            <p className="text-2xl sm:text-3xl font-bold">
-              Just type <code className="font-mono text-emerald-gradient px-1">rc</code>.
-            </p>
           </div>
         </section>
 
