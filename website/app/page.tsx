@@ -45,10 +45,15 @@ export default function Home() {
         {/* Hero */}
         <section className="px-6 pt-24 pb-16 text-center">
           {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-zinc-500 mb-8">
+          <a
+            href="https://github.com/north-brook/remote-control"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-zinc-500 mb-8 hover:border-emerald-400/50 hover:text-zinc-300 transition-colors"
+          >
             <span className="text-emerald-400">●</span>
-            Open source
-          </div>
+            Open source ↗
+          </a>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
             Check on your machines<br />in seconds.
