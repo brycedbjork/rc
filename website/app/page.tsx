@@ -103,32 +103,6 @@ export default function Home() {
         </section>
 
 
-        {/* Why */}
-        <section className="px-6 pb-24">
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">
-            Just type <code className="font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-md px-2 py-0.5">rc</code>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-            {[
-              { pain: "Remembering hostnames", fix: "Pick from a list", icon: "→" },
-              { pain: "Hunting for SSH keys", fix: "Keys auto-generated", icon: "→" },
-              { pain: "Configuring VNC clients", fix: "One keypress to connect", icon: "→" },
-              { pain: "Setting up Cursor SSH", fix: "Choose a directory and go", icon: "→" },
-            ].map((item) => (
-              <div
-                key={item.pain}
-                className="group rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 hover:border-emerald-400/20 transition-all"
-              >
-                <p className="text-zinc-500 line-through decoration-zinc-700 text-sm mb-3">{item.pain}</p>
-                <div className="flex items-center gap-2">
-                  <span className="text-emerald-400 text-sm">→</span>
-                  <p className="text-white text-base font-medium">{item.fix}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Features */}
         <section className="px-6 pb-24">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">
@@ -167,6 +141,32 @@ export default function Home() {
               <span key={label} className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-4 py-2">
                 <Sparkle className="w-3.5 h-3.5 text-emerald-400/60" /> {label}
               </span>
+            ))}
+          </div>
+        </section>
+
+        {/* Why */}
+        <section className="px-6 pb-24">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">
+            Just type <code className="font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 rounded-md px-2 py-0.5">rc</code>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+            {[
+              { pain: "Remembering hostnames", fix: "Pick from a list", icon: "→" },
+              { pain: "Hunting for SSH keys", fix: "Keys auto-generated", icon: "→" },
+              { pain: "Configuring VNC clients", fix: "One keypress to connect", icon: "→" },
+              { pain: "Setting up Cursor SSH", fix: "Choose a directory and go", icon: "→" },
+            ].map((item) => (
+              <div
+                key={item.pain}
+                className="group rounded-xl border border-white/10 bg-white/[0.02] px-6 py-5 hover:border-emerald-400/20 transition-all"
+              >
+                <p className="text-zinc-500 line-through decoration-zinc-700 text-sm mb-3">{item.pain}</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-emerald-400 text-sm">→</span>
+                  <p className="text-white text-base font-medium">{item.fix}</p>
+                </div>
+              </div>
             ))}
           </div>
         </section>
