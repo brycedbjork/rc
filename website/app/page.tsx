@@ -87,7 +87,7 @@ export default function Home() {
           </a>
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Check on your machines<br /><span className="text-emerald-gradient">in seconds.</span>
+            Check on your machines<br /><span className="text-emerald-gradient">in seconds</span>
           </h1>
 
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12">
